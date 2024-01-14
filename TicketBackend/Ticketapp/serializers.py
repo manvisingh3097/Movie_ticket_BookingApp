@@ -1,15 +1,15 @@
 from .models import *
 from rest_framework import serializers
 
-class UserSerializer:
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        Fields = "__all__"
+        fields = "__all__"
 
-class MovieSerializer:
+class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        Fields = "__all__"
+        fields = "__all__"
 
 class ScreenSerializer:
     class Meta:
