@@ -11,17 +11,17 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = "__all__"
 
-class ScreenSerializer:
+class ScreenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Screen
-        Fields = "__all__"
+        fields = "__all__"
 
-class SeatsSerializer:
+class SeatsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seats
-        Fields = "__all__"
+        fields = "__all__"
 
-class TicketSerializer:
+class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
-        Fields = "__all__"
+        fields = "__all__"

@@ -1,11 +1,12 @@
 from django.db import models
-
+from djongo import models as djongo_models
 # Create your models here.
 class User(models.Model):
+    _id = djongo_models.ObjectIdField() 
     username = models.CharField(max_length=32, unique=True)
     password = models.CharField(max_length=128)
     email = models.EmailField()
-    mobile_num = models.IntegerField(max_length=15)
+    mobile_num = models.CharField(max_length=15)
 
 class Movie(models.Model):
     moviename = models.CharField(max_length=200, unique=True)
@@ -15,6 +16,7 @@ class Movie(models.Model):
     run_timing = models.IntegerField()
     date = models.DateField()
     image = models.URLField()
+    location = models.CharField(max_length=100)
 
 class Screen(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
@@ -33,7 +35,7 @@ class Seats(models.Model):
 
 class Ticket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    price = models.FloatField()
+    total_price = models.FloatField()
     seats = models.ManyToManyField(Seats)
     
 
