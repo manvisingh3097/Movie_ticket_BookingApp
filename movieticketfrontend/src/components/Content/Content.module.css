@@ -1,0 +1,23 @@
+.banner{
+    height: 550px;
+    background-color:pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.header1{
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.header2{
+   color: rgb(185, 50, 145);
+}
+
+p{
+    font-size: 25px;
+    color: rgb(63, 84, 93);
+}
