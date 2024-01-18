@@ -11,9 +11,9 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = "__all__"
 
-class ScreenSerializer(serializers.ModelSerializer):
+class TheaterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Screen
+        model = Theater
         fields = "__all__"
 
 class SeatsSerializer(serializers.ModelSerializer):

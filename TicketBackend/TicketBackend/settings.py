@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0+h5l)zno0jmbc(1-af)4hjkxf4pj-0w&vsq)c@8y1sqzp51du
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'Ticketapp',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -49,9 +50,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'TicketBackend.urls'
+
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {

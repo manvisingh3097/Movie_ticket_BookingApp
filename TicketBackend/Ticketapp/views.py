@@ -3,6 +3,8 @@ from rest_framework.views import APIView
 import json
 from .serializers import *
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated , IsAdminUser
+
 
 # Create your views here.
 
@@ -38,9 +40,32 @@ class UserView(APIView):
         return Response(status=204)
     
 class MovieView(APIView):
-    def get(self, request):
+#for admin only 
+    def get_permissions(self):
+        if self.request.method in ["POST", "PUT" , "DELETE"]:
+            return [IsAuthenticated(), IsAdminUser()]
+        return[]
 
-        movie_list = Movie.objects.all().values()
+    def get(self, request):
+        name = request.GET.get("name",None)
+        genre = request.GET.get("genre",None)
+        language = request.GET.get("language",None)
+        location = request.GET.get("location",None)
+        movie_list = Movie.objects.all()
+
+        if name:
+            movie_list = movie_list.filter(moviename=name)
+
+        if genre:
+            movie_list = movie_list.filter(genre=genre)
+
+        if language:
+            movie_list = movie_list.filter(language=language)
+        
+        if location:
+            movie_list = movie_list.filter(location=location)
+
+        movie_list = movie_list.values()
         return Response(movie_list , status=200)
     
     def post(self, request):
@@ -65,7 +90,9 @@ class MovieView(APIView):
         moviedetail = Movie.objects.get(moviename= request.data["moviename"])
         moviedetail.delete()
         return Response({"message: movie deleted succesfully"} , status=204)
-    
+
+
+
 class TicketView(APIView):
     def get(self, request):
         utickets = request.GET.get("username" , None)
@@ -76,18 +103,10 @@ class TicketView(APIView):
             serializer.save()
             return Response({"message": "Ticket Booked succesfully"} , status=201)
         return Response(serializer.errors , status=400)
+    
 
-
-            
-
+class TheaterView(APIView):
+    def get(self, request):
+        theater_name = request.Get.get("theater_name" , None)
         
-
-    
-
-    
-
-
-
-
-
 
