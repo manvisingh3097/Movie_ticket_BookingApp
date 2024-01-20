@@ -22,7 +22,8 @@ class UserManager(BaseUserManager):
 
 # Create your models here.
 class User(AbstractBaseUser):
-    _id = djongo_models.ObjectIdField() 
+    # _id = djongo_models.ObjectIdField() 
+    
     username = models.CharField(max_length=32, unique=True)
     password = models.CharField(max_length=128)
     email = models.EmailField()
@@ -53,20 +54,19 @@ class Movie(models.Model):
     language = models.CharField(max_length= 100)
     run_timing = models.IntegerField()
     release_date = models.DateField()
-    image = models.URLField()
-    location = models.CharField(max_length=100)
+    image = models.URLField(max_length=500)
+    location = models.CharField(max_length=100,default="india")
 
     #whenevr we create a class of user and print them  
     def __str__(self):
         return self.moviename
 
 class Theater(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE , related_name= "theaters")
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     ##maybe we n eed seat as a foreign key not sure
     theater_name = models.CharField(max_length=255)
     city = models.CharField(max_length = 100)
     movie_time = models.DateTimeField()
-    seat_type = models.CharField(max_length=100)
     available_seats = models.IntegerField()
 
     def __str__(self) -> str:
@@ -74,7 +74,7 @@ class Theater(models.Model):
 
 class Seats(models.Model):
     theater = models.ForeignKey(Theater, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE )
+    # movie = models.ForeignKey(Movie, on_delete=models.CASCADE )
     seat_number = models.CharField(max_length=6)
     is_reserver = models.BooleanField(default=False)
     row = models.CharField(max_length=10)
@@ -87,7 +87,7 @@ class Seats(models.Model):
 
 class Ticket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    total_price = models.FloatField()
+    total_price = models.FloatField(default=0)
     seats = models.ManyToManyField(Seats)
     
 

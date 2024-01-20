@@ -107,6 +107,15 @@ class TicketView(APIView):
 
 class TheaterView(APIView):
     def get(self, request):
-        theater_name = request.Get.get("theater_name" , None)
+        movie_name = request.Get.get("movie_name" , None)
+        theater_list = Theater.objects.get(movie__iexact=movie_name)
+        return Response(theater_list.values(),status=200)
+
+    def post(self, request):
+        serializer = TheaterSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Theater added succesfully"} , status=201)
+        return Response(serializer.errors , status=400)
         
 
