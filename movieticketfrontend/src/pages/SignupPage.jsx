@@ -27,6 +27,7 @@ const RegisterPage = () => {
             email: values.email,
             mobile_num:values.mobile,
             password:values.password
+            
         }
         fetch("http://127.0.0.1:8000/api/user",{
             method: 'POST',

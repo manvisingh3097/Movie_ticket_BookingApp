@@ -3,13 +3,22 @@ import Navbar from '../components/Navbar/Navbar'; // Adjust the import path base
 import Content from '../components/Content/Content';
 import Searchpanel from '../components/Searchpanel/Searchpanel';
 
+import MovieList from '../components/Movieslist';
+
 const LandingPage = () => {
+
+  
+ 
     
   return (
     <>
       <Navbar />
       <Content/>
       <Searchpanel/>
+      <MovieList/>
+      
+
+      
 
       
 

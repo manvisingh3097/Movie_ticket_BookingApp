@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import "bootstrap/dist/css/bootstrap.css";
 
+
 const Navbar = () => {
   return (
     // <nav>
@@ -23,7 +24,7 @@ const Navbar = () => {
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <img className='logoimage' src="./moviemaybe3.png" ></img>
-      <a class="navbar-brand" href="/l">
+      <a class="navbar-brand" href="/home">
       MovieMaybe
       </a>
       <button
@@ -41,17 +42,19 @@ const Navbar = () => {
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="/l">
+            <a class="nav-link" href="/home">
               Home 
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/l">
+            <a class="nav-link" href="/movies">
+            
               Movies 
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/theater">
+            
               Theaters
             </a>
           </li>

@@ -26,7 +26,7 @@ const Searchpanel = () => {
         <h1 className={styles.header1}>WELCOME TO MOVIE-MAYBE</h1>
         <h1 className={styles.header2}>WHAT ARE YOU LOOKING FOR</h1>
       </div>
-
+      <div className={styles.box}>
       <div className={styles.searchWrapper}>
         <input
           className={styles.searchinput}
@@ -53,6 +53,9 @@ const Searchpanel = () => {
       </div>
 
       <input className={styles.searchinput} type="text" placeholder="Cinema" />
+      
+      </div>
+
       
     </div>
   );

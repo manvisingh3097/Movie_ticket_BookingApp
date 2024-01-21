@@ -1,36 +1,36 @@
+/* Searchpanel.module.css */
 .container {
-    display: flexbox;
-    align-items: start;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    flex-direction: column;
-  }
-
-  .header1{
-    font-size: 20px;
-    font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  justify-content: space-around;
 }
 
-.header2{
-  font-size: 30px;
-  font-weight: bolder;
+
+.header1 {
+  font-size: 24px;
 }
-  
-  label {
-    margin-right: 10px;
-  }
-  
-  input {
-    padding: 8px;
-    margin-right: 10px;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
+
+.header2 {
+  font-size: 18px;
+}
+
+.searchWrapper {
+  /* display: flex;
+  align-items: center; */
+  margin-top: 20px;
+}
+
+.searchinput {
+  padding: 8px;
+  margin-right: 8px;
+}
+
+.selectcity {
+  margin-top: 10px;
+  padding: 8px;
+}
+
+/* Add more styles as needed */
