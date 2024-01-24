@@ -53,14 +53,14 @@ const Navbar = () => {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/theater">
+            <a class="nav-link" href="/theaters">
             
               Theaters
             </a>
           </li>
         </ul>
         <button class="btn btn-outline-success my-2 ms-auto" type="submit">
-          Sign up
+          Signup
         </button>
       </div>
     </nav>
