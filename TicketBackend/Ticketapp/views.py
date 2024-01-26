@@ -4,24 +4,39 @@ import json
 from .serializers import *
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated , IsAdminUser
+from django.db.models import Q
+import jwt
 
 
 # Create your views here.
 
 class UserView(APIView):
     def post(self, request):
+        #signup
         serializer = UserSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({"message": "Account created succesfully"} , status=201)
+        print(serializer.errors)
         return Response(serializer.errors , status=400)
     
     def get(self, request):
-        #
+        #signin
         uname = request.GET.get("username" , None)
+        passw = request.GET.get("password" , None)
         users_list = User.objects.all()
-        userdetail = users_list.filter(username__iexact=uname)
-        return Response(userdetail.values() , status=201)
+        
+        try:
+            userdetail = users_list.filter(username__iexact=uname).values("username","password")[0]
+        except:
+            return Response({"message":"username not found"},400)
+        if userdetail["username"] == uname and userdetail["password"]==passw:
+            #generate jwt
+            encode_jwt = jwt.encode({"username":uname},'secret',algorithm='HS256')
+            return Response({"message":"Login sucessfull","jwt":encode_jwt},200)
+        else:
+            return Response({"message":"username,password did not match"},400)
+
     
 
     def put(self, request):
@@ -95,21 +110,43 @@ class MovieView(APIView):
 
 class TicketView(APIView):
     def get(self, request):
-        utickets = request.GET.get("username" , None)
+        username = request.GET.get("username" , None)
+        theatername = request.GET.get("theater_name" , None)
+        tickets_list=[]
+        if username:
+            tickets_list = Ticket.objects.filter(user__username=username)
+        if theatername:
+            tickets_list = Ticket.objects.filter(theater__theater_name=theatername)
+
+        return Response(tickets_list.values(),200)
+
 
     def post(self,request):
+        print(request.data)
         serializer = TicketSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({"message": "Ticket Booked succesfully"} , status=201)
+        print(serializer.errors)
         return Response(serializer.errors , status=400)
     
 
 class TheaterView(APIView):
     def get(self, request):
-        movie_name = request.Get.get("movie_name" , None)
-        theater_list = Theater.objects.get(movie__iexact=movie_name)
-        return Response(theater_list.values(),status=200)
+        movie_name = request.GET.get("moviename",None)
+        theatername = request.GET.get("theatername",None)
+        movie_time = request.GET.get("movietime",None)
+
+        if (movie_name):
+            theater_list = Theater.objects.filter(movie__moviename=movie_name).values()
+        elif (theatername and movie_time):
+            query = Q(theater_name=theatername) & Q(movie_time=movie_time)
+            theater_list = Theater.objects.filter(query).values()
+
+        else:
+            theater_list= Theater.objects.all().values()
+        
+        return Response(theater_list,status=200)
 
     def post(self, request):
         serializer = TheaterSerializer(data = request.data)
@@ -118,4 +155,21 @@ class TheaterView(APIView):
             return Response({"message": "Theater added succesfully"} , status=201)
         return Response(serializer.errors , status=400)
         
-
+class SeatsView(APIView):
+    def get(self,request):
+        seats = []
+        ticket_list=[]
+        theatername = request.GET.get("theater",None)
+        movie_time = request.GET.get("movietime",None)
+        print(theatername)
+        if theatername:
+            query = Q(theater__theater_name=theatername) & Q(theater__movie_time=movie_time)
+            ticket_list = Ticket.objects.filter(query ).values()
+        else :
+            ticket_list = Ticket.objects.all().values()
+        for each in ticket_list:
+            string_seats = each["seats"]
+            list_seats  = string_seats.split(",")
+            seats.extend(list_seats)
+        return Response(seats,200)
+        

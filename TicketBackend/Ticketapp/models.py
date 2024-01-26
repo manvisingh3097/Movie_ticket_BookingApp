@@ -67,10 +67,10 @@ class Theater(models.Model):
     theater_name = models.CharField(max_length=255)
     city = models.CharField(max_length = 100)
     movie_time = models.DateTimeField()
-    available_seats = models.IntegerField()
-
+    available_seats = models.IntegerField(default=45) 
     def __str__(self) -> str:
         return self.theater_name
+
 
 class Seats(models.Model):
     theater = models.ForeignKey(Theater, on_delete=models.CASCADE)
@@ -86,9 +86,14 @@ class Seats(models.Model):
         return f"{self.theater_name}- {self.movie.title}-seat{self.seat_number}"
 
 class Ticket(models.Model):
+    theater = models.ForeignKey(Theater, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     total_price = models.FloatField(default=0)
-    seats = models.ManyToManyField(Seats)
+    seats = models.TextField(max_length=100)
+
+    def __str__(self) -> str:
+        return f"{self.theater}-{self.seats}"
+
     
 
     
