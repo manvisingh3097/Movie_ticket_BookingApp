@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import './Moviedetails.css'
 
 const Moviedetails = () => {
   const [movie, setMovie] = useState(null);
@@ -37,7 +38,7 @@ const Moviedetails = () => {
       <div className="container-sm details">
         {movie.map((movie) => (
           <div key={movie.movieId}>
-            <img src={movie.image} alt="" width={300} height={300} />
+            <img  className="img" src={movie.image} alt="" width={300} height={300} />
             <p>Movie Name: {movie.moviename}</p>
             <p>Release Date: {movie.release_date}</p>
             <p>Genre: {movie.genre}</p>
@@ -45,7 +46,7 @@ const Moviedetails = () => {
             <p>Run Time: {movie.run_timing} hrs </p>
             
             <Link to={{ pathname:`/theater/${movie.moviename}` }}>
-              <button>Book Now</button>
+              <button className="bttn">Book Now</button>
             </Link>
           </div>
         ))}

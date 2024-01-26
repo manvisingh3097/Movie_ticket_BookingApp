@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import './Login.css';
 import { Link, useNavigate } from "react-router-dom";
 // import Endpoints from "../api/Endpoints";
 
@@ -14,13 +15,13 @@ const LoginPage = () => {
   });
 
   const initialValues = {
-    email: "",
+    username: "",
     password: "",
   };
 
   const onSubmit = (values) => {
     axios
-      .post("http://127.0.0.1:8000/api/user/login=", values)
+      .get(`http://127.0.0.1:8000/api/user?username=${values.username}&password=${values.password}`)
       .then(
         (response) => {
           setRequestedResponse({
@@ -28,14 +29,17 @@ const LoginPage = () => {
             alertClass: "alert alert success",
           });
 
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("token", JSON.stringify(response.data.user));
+          localStorage.setItem("token", response.data.jwt);
+          setRequestedResponse({
+            textMessage: `${response.data.message}`,
+            alertClass: "alert alert-danger",
+          });
 
-          navigate("/");
+          navigate("/home");
         },
         (error) => {
           setRequestedResponse({
-            textMessage: "error.response.data.message",
+            textMessage: `${error.response.data.message}`,
             alertClass: "alert alert-danger",
           });
         }
@@ -44,9 +48,9 @@ const LoginPage = () => {
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .required("Email is required")
-      .email("email must be a valid email"),
+    username: Yup.string()
+      .required("username is required")
+      .min(1,"username must be a valid user"),
     password: Yup.string()
       .required("Password must be valid")
       .min(6, "Password must be at least 6 Characters"),
@@ -62,7 +66,7 @@ const LoginPage = () => {
               {requestedResponse.textMessage}
             </div>
 
-            <h2> Login </h2>
+            <h2 className="H2"> Login </h2>
             <hr />
             <Formik
               initialValues={initialValues}
@@ -72,27 +76,27 @@ const LoginPage = () => {
             >
               {(formik) => {
                 return (
-                  <Form>
+                  <Form className="loginform">
                     <div className="form-group">
-                      <label>Email</label>
+                      <label className="username">Username</label>
                       <Field
                         type="text"
-                        name="email"
+                        name="username"
                         className={
-                          formik.touched.email && formik.errors.email
+                          formik.touched.username && formik.errors.username
                             ? "formik-control is-invalid"
                             : "form-control"
                         }
                       />
 
-                      <ErrorMessage name="email">
+                      <ErrorMessage name="username">
                         {(errorMessage) => (
                           <small className="text-danger"> {errorMessage}</small>
                         )}
                       </ErrorMessage>
                     </div>
                     <div className="form-group">
-                      <label>Password </label>
+                      <label className="username">Password </label>
                       <Field
                         type="password"
                         name="password"
@@ -112,7 +116,7 @@ const LoginPage = () => {
                     <input
                       type="submit"
                       value="Login"
-                      className="btn btn-primary btn-block"
+                      className="loginbtn"
                       disabled={!formik.isValid}
                     />
                   </Form>
@@ -121,7 +125,7 @@ const LoginPage = () => {
             </Formik>
             <br />
             <p className="text-center">
-              new user? <Link to="/register"> Click Here </Link>
+              new user? <Link to="/signup"> Click Here </Link>
             </p>
           </div>
         </div>

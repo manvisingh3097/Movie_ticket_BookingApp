@@ -35,7 +35,7 @@ const TicketPlan = () => {
   useEffect(() => {
     const fetchid = async () => {
       try {
-        const theater_url = `http://127.0.0.1:8000/api/theater?theatername=${theatername}`;
+        const theater_url = `http://127.0.0.1:8000/api/theater?theatername=${theatername}&movietime=${movie_time}`;
         const response = await axios.get(theater_url);
         settheaterId(response.data["0"]["id"]);
       } catch (error) {

@@ -40,7 +40,7 @@ const TheaterPage = () => {
   return (
     <div>
       <Navbar />
-      <h1> Booking for :  {moviename}</h1>
+      <h1 className="bookingfor"> Booking For :  {moviename}</h1>
       <div className="App">
         <table>
           <thead>

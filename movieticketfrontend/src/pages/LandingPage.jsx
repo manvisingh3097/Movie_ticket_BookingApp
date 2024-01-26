@@ -14,7 +14,7 @@ const LandingPage = () => {
     <>
       <Navbar />
       <Content/>
-      <Searchpanel/>
+      
       <MovieList/>
       
 

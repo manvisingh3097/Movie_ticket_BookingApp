@@ -1,5 +1,17 @@
+li {
+    display: inline;
+  }
 
-
+  li {
+    float: left;
+  }
+  
+  a {
+    display: block;
+    padding: 8px;
+   
+  }
+  
 .navbar-bg{
     background-color: rgb(189, 109, 123);
     
@@ -10,6 +22,7 @@
     display: flex;
     
 }
+
 
 .home{
     font-size: 17px;
@@ -35,17 +48,13 @@
     border-radius: 12px;
 }
 
-.loginbtn{
-    display: flex;
-    align-items:right;
-    justify-content: center;
-    height: 52px;
-    width: 145px; 
-    background-color: #d6adc5;
-    color: rgb(91, 71, 71);
-    font-weight: bold;
-    font-size: 24px;
-    border-radius: 12px;
-    padding: 10px;
+.signup{
+   font-size: larger;
+   padding: 10px;
+   border-radius: 10px;
+   position:absolute ;
+   right: 28px;
 
+    
+   
 }

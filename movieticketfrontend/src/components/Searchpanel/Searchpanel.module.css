@@ -33,4 +33,32 @@
   padding: 8px;
 }
 
+.movielist {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 50px;
+  padding: 10px;
+  gap: 10px;
+
+}
+
+.listofmovies {
+  font-weight: 100px;
+
+}
+
+.movieimg {
+  justify-content: auto;
+  padding: 100px;
+  border-radius: 10px;
+  border: 1px solid black;
+
+}
+
+.movieimg:hover{
+  background-color:pink;
+  transform: rotateY(20deg)
+  
+}
+
 /* Add more styles as needed */

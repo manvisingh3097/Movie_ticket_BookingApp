@@ -1,0 +1,40 @@
+.details {
+
+    outline: 1px solid black;
+
+    border-radius: 10px;
+    background-color: pink;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    margin-top: 10px;
+    padding: 100px;
+    width: 650px;
+
+
+}
+
+.img {
+    border-radius: 12px;
+    outline: 1px solid black;
+    margin: 1px;
+    padding: 10px;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.bttn {
+    border-radius: 10px;
+    font-size: medium;
+    color: rgb(159, 62, 62);
+    padding: 5px;
+    cursor: pointer; 
+    display: inline-block;
+    position: relative;
+    justify-content: center;
+    border-color: blueviolet;
+
+}
+
