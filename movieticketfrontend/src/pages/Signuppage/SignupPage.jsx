@@ -184,7 +184,7 @@ const RegisterPage = () => {
               </center>
             </form>
             <br />
-            <p className="text-center">
+            <p className="text-center clickhere">
               Already Registered? <a href="/login"> Click Here </a>
             </p>
           </div>

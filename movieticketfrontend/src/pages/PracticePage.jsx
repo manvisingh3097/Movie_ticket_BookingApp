@@ -53,34 +53,34 @@ import axios from 'axios'
 //   );
 // }
 
-const Axiostutorial =() => {
+// const Axiostutorial =() => {
 
-    const [userdata , setdata] = useState([])
+//     const [userdata , setdata] = useState([])
 
 
-    useEffect(() => {
-      axios.get("https://jsonplaceholder.typicode.com/users")
-      .then((response)=>{
-        console.log(response)
-        setdata(response.data)
-      })
+//     useEffect(() => {
+//       axios.get("https://jsonplaceholder.typicode.com/users")
+//       .then((response)=>{
+//         console.log(response)
+//         setdata(response.data)
+//       })
   
-    }, []);
+//     }, []);
   
-    return (
-      <>
+//     return (
+//       <>
         
-        <div>Axiostutorial
-            {userdata.map((data)=> {
-                return(
-                    <div>{data.name}</div>
-                )
-            })}
-        </div>
+//         <div>Axiostutorial
+//             {userdata.map((data)=> {
+//                 return(
+//                     <div>{data.name}</div>
+//                 )
+//             })}
+//         </div>
        
         
-        </>
-    );
-  }
+//         </>
+//     );
+//   }
   
-  export default Axiostutorial; 
+//   export default Axiostutorial; 

@@ -1,18 +1,18 @@
 .loginbtn{
-    margin-left: 120px;
+    
     justify-content: center;
     padding: 5px;
     font-size: larger;
     width: 80px;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 40px;
     color: black;
     background-color: rgb(92, 129, 232);
 }
 
 .loginform{padding: 50px;
-    outline: 2px solid rgb(1, 1, 2);
-    background-color: pink;
+    
+    background-color:rgb(224, 202, 212);
     
 }
 
@@ -28,5 +28,11 @@
     font-size: 50px;
     align-items: center;
     
-    margin-left: 150px;
+    
 }
+
+.loginall{
+ 
+    margin-top: -50px;
+}
+

@@ -1,7 +1,7 @@
 // MoviePage.js
 import React from 'react';
-import Navbar from '../components/Navbar/Navbar';
-import MovieList from '../components/Movieslist';
+import Navbar from '../../components/Navbar/Navbar';
+import MovieList from '../../components/Movielist/Movieslist';
 
 const MoviePage = () => {
   return (

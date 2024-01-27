@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import "./TicketPlanPage.css";
 import { Link } from "react-router-dom";
 
 const TicketPlan = () => {
-  const { theatername  } = useParams();
-  const { movie_time  } = useParams();
+  const { theatername } = useParams();
+  const { movie_time } = useParams();
 
   const [Bookedseats, setBookedseats] = useState([]);
   const [availableseats, setavailableseats] = useState([]);
@@ -15,8 +15,8 @@ const TicketPlan = () => {
   const [rows, setrows] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   const [coloumn, setcoloumn] = useState(["A", "B", "C", "D", "E"]);
   const [bookingResponse, setBookingResponse] = useState(null);
-  const [theaterid, settheaterId] =useState(null);
-  
+  const [theaterid, settheaterId] = useState(null);
+
   useEffect(() => {
     const fetchSeats = async () => {
       try {
@@ -30,7 +30,6 @@ const TicketPlan = () => {
 
     fetchSeats();
   }, [theatername]);
-
 
   useEffect(() => {
     const fetchid = async () => {
@@ -62,20 +61,25 @@ const TicketPlan = () => {
   };
 
   const handlebookticket = async (theatername, seat) => {
-  
-   
-    console.log(theaterid)
+    console.log(theaterid);
     const Data = {
       theater: theaterid,
-      user: 1,
+      user: 16,
       total_price: seat.length * 120,
       seats: seat.join(),
     };
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/tickets", Data,
-      { headers: { "Content-Type": "application/json" } });
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/tickets",
+        Data,
+        { headers: { "Content-Type": "application/json" } }
+      );
       console.log("Post request sucessful:", response.data);
-      setBookingResponse(`total Price is ${seat.length*120} and bookedseats: ${seat.join()} and movie time: ${movie_time}}`); 
+      setBookingResponse(
+        `total Price is ${
+          seat.length * 120
+        } and bookedseats: ${seat.join()} and movie time: ${movie_time}}`
+      );
     } catch (error) {
       console.error("Error making POST request:", error);
     }
@@ -86,49 +90,59 @@ const TicketPlan = () => {
     <>
       <Navbar />
 
-      <h1>{theatername}</h1>
-      <h2>Ticket price is 120</h2>
-      <div className="container">
-        {coloumn.map((col, colIndex) => (
-          <div className="btn-row">
-            {rows.map((r, rowIndex) => (
-              <React.Fragment key={rowIndex}>
-                <button
-                  className={
-                    "btn " +
-                    (selectedseats.includes(`${col}${r}`)
-                      ? "btn-selected "
-                      : "") +
-                    (Bookedseats.includes(`${col}${r}`) ? "disabled" : "")
-                  }
-                  onClick={() => handleselectseats(`${col}${r}`)}
-                >
-                  {col}
-                  {r}
-                </button>
-                {(rowIndex + 1) % 10 === 0 && rowIndex !== rows.length - 1 && (
-                  <br />
-                )}{" "}
-                {/* Add line break if not the last row */}
-              </React.Fragment>
-            ))}
+      <h1 className="THEATERNAME">{theatername}</h1>
+      <h2 className="tickets">Price : Per Ticket price is 120</h2>
+      <center>
+        <div className="container">
+          {coloumn.map((col, colIndex) => (
+            <div className="btn-row">
+              {rows.map((r, rowIndex) => (
+                <React.Fragment key={rowIndex}>
+                  <button
+                    className={
+                      "btn " +
+                      (selectedseats.includes(`${col}${r}`)
+                        ? "btn-selected "
+                        : "") +
+                      (Bookedseats.includes(`${col}${r}`) ? "disabled" : "")
+                    }
+                    onClick={() => handleselectseats(`${col}${r}`)}
+                  >
+                    {col}
+                    {r}
+                  </button>
+                  {(rowIndex + 1) % 10 === 0 &&
+                    rowIndex !== rows.length - 1 && <br />}{" "}
+                  {/* Add line break if not the last row */}
+                </React.Fragment>
+              ))}
+            </div>
+          ))}
+          <div className="hrline">
+            <hr class="style-seven" size="20" width="100%" color="darkblue" />
+            <p>SCREEN</p>
           </div>
-        ))}
 
-        <button
-          onClick={() => handlebookticket(theatername, selectedseats)}
-          className={`book-btn ${selectedseats.length < 1 ? "disabled" : ""}`}
-          disabled={selectedseats.length < 1}
-        >
-          BookTicket
-        </button>
-        {bookingResponse && (
-          <div className="response-container">
-            <h3>Booking Response:</h3>
-            <p>{JSON.stringify(bookingResponse, null, 2)}</p>
-          </div>
-        )}
-      </div>
+          <center>
+            <button
+              onClick={() => handlebookticket(theatername, selectedseats)}
+              className={`book-btn ${
+                selectedseats.length < 1 ? "disabled" : ""
+              }`}
+              disabled={selectedseats.length < 1}
+            >
+              BookTicket
+            </button>
+          </center>
+
+          {bookingResponse && (
+            <div className="response-container">
+              <h3>Booking Response:</h3>
+              <p>{JSON.stringify(bookingResponse, null, 2)}</p>
+            </div>
+          )}
+        </div>
+      </center>
     </>
   );
 };

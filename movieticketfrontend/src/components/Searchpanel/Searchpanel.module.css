@@ -1,14 +1,14 @@
 /* Searchpanel.module.css */
-.container {
+/* .container {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 20px;
   border: 1px solid #ccc;
   justify-content: space-around;
-}
+} */
 
-
+/* 
 .header1 {
   font-size: 24px;
 }
@@ -18,8 +18,8 @@
 }
 
 .searchWrapper {
-  /* display: flex;
-  align-items: center; */
+  display: inline-flex;
+  align-items: center;
   margin-top: 20px;
 }
 
@@ -59,6 +59,6 @@
   background-color:pink;
   transform: rotateY(20deg)
   
-}
+} */
 
 /* Add more styles as needed */

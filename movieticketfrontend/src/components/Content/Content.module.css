@@ -1,11 +1,11 @@
 .banner{
     height: 550px;
-    background-color:pink;
+    background-color:rgb(214, 155, 181);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+    box-shadow: 5px 5px 5px 5px lightgrey ;
 }
 
 .header1{

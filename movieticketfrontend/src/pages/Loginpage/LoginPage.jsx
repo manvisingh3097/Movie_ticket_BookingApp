@@ -65,8 +65,10 @@ const LoginPage = () => {
             <div class={requestedResponse.alertClass} role="alert">
               {requestedResponse.textMessage}
             </div>
-
-            <h2 className="H2"> Login </h2>
+<center>
+<h2 className="H2"> Login </h2>
+</center>
+            
             <hr />
             <Formik
               initialValues={initialValues}
@@ -113,18 +115,21 @@ const LoginPage = () => {
                         )}
                       </ErrorMessage>
                     </div>
+                    <center>
                     <input
                       type="submit"
                       value="Login"
                       className="loginbtn"
                       disabled={!formik.isValid}
                     />
+                    </center>
+                    
                   </Form>
                 );
               }}
             </Formik>
             <br />
-            <p className="text-center">
+            <p className="text-center loginall">
               new user? <Link to="/signup"> Click Here </Link>
             </p>
           </div>

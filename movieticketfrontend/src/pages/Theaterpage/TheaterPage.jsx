@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import "./Theaterpage.css";
 import { useParams } from "react-router-dom";

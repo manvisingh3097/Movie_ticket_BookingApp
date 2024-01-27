@@ -6,14 +6,14 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import LandingPage from './pages/LandingPage';
-import SignupPage from './pages/SignupPage';
-import LoginPage from './pages/LoginPage';
-import Moviedetails from './pages/Moviedetails';
-import TheaterPage from './pages/TheaterPage';
-import Moviepage from './pages/Moviepage';
-import PracticePage from './pages/PracticePage';
-import TicketPlanPage from './pages/TicketPlanPage';
+import LandingPage from './pages/Landingpage/LandingPage';
+import SignupPage from './pages/Signuppage/SignupPage';
+import LoginPage from './pages/Loginpage/LoginPage';
+import Moviedetails from './pages/Moviedetails/Moviedetails';
+import TheaterPage from './pages/Theaterpage/TheaterPage';
+import Moviepage from './pages/Moviepage/Moviepage';
+
+import TicketPlanPage from './pages/Ticketplanpage/TicketPlanPage';
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           <Route path="/theater/:moviename" element={<TheaterPage/>} />
           <Route path="/movies" element={<Moviepage/>} />
           <Route path="/booking/:theatername/:movie_time" element={<TicketPlanPage/>} />
-          <Route path="/practice" element={<PracticePage/>} />
+         
        
           
         </Routes>
