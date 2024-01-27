@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios'
+// import React, { useState, useEffect } from "react";
+// import axios from 'axios'
 
 // function App() {
 //   const [count, setCount] = useState(5);
@@ -84,3 +84,23 @@ import axios from 'axios'
 //   }
   
 //   export default Axiostutorial; 
+
+import { ChangeEvent,useState } from 'react';
+
+export default function App() {
+  const [inputText, setInputText] = useState("");
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // 👇 Store the input value to local state
+    setInputText(e.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" onChange={handleChange} value={inputText} />
+
+      {/* 👇 Use the input value from state */}
+      <p>Your input: {inputText}</p>
+    </div>
+  );
+}

@@ -6,20 +6,57 @@ import styles from "./Movielist.module.css";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
+  const [message, setMessage] = useState('');
+  const [updated, setUpdated] = useState(message);
 
+  const [messageMovie, setmessageMovie] = useState('');
+  const [updatedMovie, setupdatedMovie] = useState(messageMovie);
+
+  const [messageLanguage, setmessageLanguage] = useState('');
+  const [updatedLanguage, setupdatedLanguage] = useState(messageLanguage);
+
+  const handleClick = () => {
+    //  "message" stores input field value
+    setUpdated(message);
+    setupdatedMovie(messageMovie);
+    setupdatedLanguage(messageLanguage);
+  };
+  const handleChangegenre = (event) => {
+ 
+    setMessage(event.target.value);
+   
+  };
+
+  const handleChangemovie = (event) => {
+ 
+    
+    setmessageMovie(event.target.value);
+    
+  };
+
+  const handleChangelanguage = (event) => {
+ 
+    setmessageLanguage(event.target.value);
+  };
+
+
+
+
+  
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const url = "http://127.0.0.1:8000/api/movies";
+        const url = `http://127.0.0.1:8000/api/movies?genre=${updated}&name=${updatedMovie}&language=${updatedLanguage}`;
         const response = await axios.get(url);
         setMovies(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
     };
 
     fetchMovies();
-  }, []);
+  }, [updated , updatedLanguage, updatedMovie]);
 
   return (
     <div>
@@ -37,24 +74,29 @@ const MovieList = () => {
           </center>
         </div>
               <input
+              id ="Movie"
                 className={styles.selectcity}
                 type="text"
                 placeholder="Search For Movies"
+                onChange={handleChangemovie}
               />
               <input
+              id="language"
                 className={styles.selectcity}
                 type="text"
-                placeholder="Select a City"
+                placeholder="Language"
+                onChange={handleChangelanguage}
+
               />
               <input
+                id="genre"
                 className={styles.selectcity}
                 type="text"
-                placeholder="Cinema"
+                placeholder="Genre"
+                onChange={handleChangegenre}
+
               />
-              <img
-                src="https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png"
-                width="25px"
-              ></img>
+             <button onClick={handleClick}>Search</button>
             </div>
           </div>
         </center>
