@@ -34,7 +34,8 @@ const LoginPage = () => {
             textMessage: `${response.data.message}`,
             alertClass: "alert alert-danger",
           });
-
+          localStorage.setItem('username', values.username);
+          localStorage.setItem('userid', response.data.userid);
           navigate("/home");
         },
         (error) => {

@@ -64,7 +64,7 @@ const TicketPlan = () => {
     console.log(theaterid);
     const Data = {
       theater: theaterid,
-      user: 16,
+      user: localStorage.getItem('userid'),
       total_price: seat.length * 120,
       seats: seat.join(),
     };

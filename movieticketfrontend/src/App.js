@@ -13,7 +13,7 @@ import Moviedetails from './pages/Moviedetails/Moviedetails';
 import TheaterPage from './pages/Theaterpage/TheaterPage';
 import Moviepage from './pages/Moviepage/Moviepage';
 import PracticePage from './pages/PracticePage';
-
+import DashboardPage from './pages/DashboardPage/Dashboard';
 import TicketPlanPage from './pages/Ticketplanpage/TicketPlanPage';
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
           <Route path="/home" element={<LandingPage/>} />
           <Route path="/signup" element={<SignupPage/>} />
           <Route path="/login" element={<LoginPage/>} />
+          <Route path="/dashboard" element={<DashboardPage/>} />
           <Route path="/practice" element={<PracticePage/>} />
           <Route path="/details/:moviename" element={<Moviedetails/>} />
           <Route path="/theater/:moviename" element={<TheaterPage/>} />

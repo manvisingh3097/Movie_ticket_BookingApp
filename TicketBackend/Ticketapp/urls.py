@@ -8,6 +8,6 @@ urlpatterns = [
     path("tickets", TicketView.as_view(), name="Ticket-View"),
     path("theater", TheaterView.as_view(), name="Theater-View"),
     path("seats", SeatsView.as_view(), name="Seat-View"),
-    
+    path("tickettheater", TicketgetView.as_view(), name="TicketgetView"),
 
 ]

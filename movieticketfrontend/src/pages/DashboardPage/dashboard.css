@@ -1,0 +1,30 @@
+.dashboardclass{
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    margin-top: 10px;
+    width: 50%;
+}
+
+.ptickets{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin-left: 20px;
+    color: rgb(0, 0, 0);
+  
+   font-size: 30px;
+}
+
+.Bookedtickets{
+    font-family: fantasy;
+    margin-top: 1px;
+    color: palevioletred;
+    font-size: 50px;
+}
+
+.imageforticket {
+    /* background-image: url('https://img.freepik.com/free-photo/composition-cinema-elements-pink-background_23-2148416789.jpg?w=2000'); */
+    background-size: cover;  /* This property ensures that the background image covers the entire element */
+    background-position: center;  /* This property centers the background image within the element */
+  
+    background-color: pink;
+      /* This sets the height of the element to the full height of the viewport */
+}

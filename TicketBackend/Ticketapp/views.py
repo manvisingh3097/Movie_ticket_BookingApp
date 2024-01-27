@@ -27,13 +27,14 @@ class UserView(APIView):
         users_list = User.objects.all()
         
         try:
-            userdetail = users_list.filter(username__iexact=uname).values("username","password")[0]
+            userdetail = users_list.filter(username__iexact=uname).values("username","password","id")[0]
         except:
             return Response({"message":"username not found"},400)
+        print(userdetail)
         if userdetail["username"] == uname and userdetail["password"]==passw:
             #generate jwt
             encode_jwt = jwt.encode({"username":uname},'secret',algorithm='HS256')
-            return Response({"message":"Login sucessfull","jwt":encode_jwt},200)
+            return Response({"message":"Login sucessfull","jwt":encode_jwt,"userid":userdetail["id"]},200)
         else:
             return Response({"message":"username,password did not match"},400)
 
@@ -172,4 +173,21 @@ class SeatsView(APIView):
             list_seats  = string_seats.split(",")
             seats.extend(list_seats)
         return Response(seats,200)
+
+class TicketgetView(APIView):
+    def get(self,request):
+        #we will expect theater id(i.e query paramater) in get request and will store in theaterid var
+        theaterid = request.GET.get('theaterid', None)
+        theater=[]
+        if (theaterid):
+            theater_list = Theater.objects.filter(id=theaterid).values()
+            theater = theater_list[0]
+            movie_id = theater["movie_id"]
+            movie_detail = Movie.objects.filter(id=movie_id).values()
+            moviename = movie_detail[0]["moviename"]
+            theater["moviename"] = moviename
+       
+        return Response(theater,200)
+
         
+
